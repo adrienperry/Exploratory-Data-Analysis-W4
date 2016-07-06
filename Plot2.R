@@ -1,6 +1,6 @@
 NEI <- readRDS("summarySCC_PM25.rds")
 dfbaltimore <- subset(NEI,NEI$fips == "24510")
-df2 <- tapply(dfbaltimore$Emissions,dfbaltimore$year,mean)
+df2 <- tapply(dfbaltimore$Emissions,dfbaltimore$year,sum)
 png("Plot2.png",width = 480, height = 480, units = "px")
-plot(names(df2),df2,xlab = "Year",ylab = "Mean of Total PM2.5 Emissions",main = "Baltimore City, Maryland - Means of Total emissions")
+plot(names(df2),df2,xlab = "Year",ylab = "Total PM2.5 Emissions",main = "Baltimore City, Maryland - Total emissions by Year")
 dev.off()
