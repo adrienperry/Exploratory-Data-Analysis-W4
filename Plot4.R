@@ -1,0 +1,8 @@
+NEI <- readRDS("summarySCC_PM25.rds”)
+SCC <- readRDS("Source_Classification_Code.rds")
+data <- subset(SCC,grepl("*Coal",EI.Sector)==TRUE)
+dfcoal <- subset(NEI,NEI$SCC %in% data$SCC)
+df4 <- tapply(dfcoal$Emissions,dfcoal$year,sum)
+png("Plot4.png",width = 480, height = 480, units = "px")
+plot(names(df4),df4,xlab = "Year",ylab = "Total PM2.5 Emissions from coal combustion-related sources")
+dev.off()
