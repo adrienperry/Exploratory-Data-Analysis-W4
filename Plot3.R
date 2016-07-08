@@ -1,0 +1,8 @@
+NEI <- readRDS("summarySCC_PM25.rds")
+df3 <- subset(NEI,(NEI$year>2007|NEI$year<2000)&(NEI$fips=="24510”))
+dataagg <- aggregate(df3$Emissions,by=list(df3$year,df3$type),FUN=sum)
+names(dataagg)<- c("Year","Types","Total Emissions")
+png("Plot3.png",width = 480, height = 480, units = "px")
+library(ggplot2)
+ggplot(data = dataagg,aes(x=Year,y=`Total Emissions`))+geom_line(aes(linetype=Types))
+dev.off()
